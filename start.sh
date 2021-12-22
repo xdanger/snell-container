@@ -8,7 +8,8 @@ CONF="/etc/snell-server.conf"
 # reuse existing config when the container restarts
 
 run_bin() {
-    echo "Running snell-server with config:\n"
+    echo "Running snell-server with config:"
+    echo ""
     cat ${CONF}
 
     ${BIN} --version
