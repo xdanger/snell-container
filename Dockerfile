@@ -1,17 +1,22 @@
-FROM jeanblanchard/alpine-glibc:3.15
+FROM --platform=$BUILDPLATFORM tonistiigi/xx AS xx
 
-ARG SNELL_VERSION="2.0.3"
-# ARG SNELL_URI="https://github.com/surge-networks/snell/releases/download/2.0.0/snell-server-v2.0.0-linux-amd64.zip"
+FROM --platform=$BUILDPLATFORM frolvlad/alpine-glibc:latest AS build
+
+COPY --from=xx / /
+COPY get_url.sh /get_url.sh
+ARG TARGETPLATFORM
+ARG VERSION
+
+RUN xx-info env && wget -q -O "snell-server.zip" $(/get_url.sh ${VERSION} $(xx-info arch)) && \
+    unzip snell-server.zip && rm snell-server.zip && \
+    xx-verify /snell-server
+
+FROM frolvlad/alpine-glibc:latest
 
 ENV TZ=UTC
 
-WORKDIR /tmp
-
+COPY --from=build /snell-server /usr/bin/snell-server
 COPY start.sh /start.sh
-RUN apk add --update libstdc++ && rm -rf /var/cache/apk/* && \
-    wget -q -O "snell-server.zip" https://github.com/surge-networks/snell/releases/download/v${SNELL_VERSION}/snell-server-v${SNELL_VERSION}-linux-amd64.zip && \
-    # wget -q -O "snell-server.zip" "${SNELL_URI}" && \
-    unzip snell-server.zip && \
-    mv snell-server /usr/bin/ && rm snell-server.zip
+RUN apk add --update --no-cache libstdc++
 
 ENTRYPOINT /start.sh
