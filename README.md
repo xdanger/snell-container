@@ -21,5 +21,3 @@ All available versions are listed in [tags](https://hub.docker.com/r/geekdada/sn
 ```bash
 docker run -e PSK=<your_psk_here> -p <your_host_port_here>:9102 --restart unless-stopped -d geekdada/snell-server:latest
 ```
-
-The default `OBFS` setting is `tls`, you can switch it to `http` by adding `-e OBFS=http` to the docker run args.
