@@ -11,6 +11,7 @@ Docker image for [snell-server](https://manual.nssurge.com/others/snell.html)
 ### Available versions
 
 > **Note**
+>
 > Version 4 isn't compatible with version 3 clients
 
 All available versions are listed in [tags](https://hub.docker.com/r/geekdada/snell-server/tags/).

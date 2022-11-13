@@ -1,5 +1,7 @@
 #!/bin/ash
 
+set -e
+
 BIN="/usr/bin/snell-server"
 CONF="/etc/snell-server.conf"
 
@@ -26,14 +28,9 @@ else
     echo "Using predefined PSK: ${PSK}"
 fi
 
-if [ -z ${OBFS} ]; then
-    OBFS=tls
-fi
-
 echo "Generating new config..."
 echo "[snell-server]" >> ${CONF}
-echo "listen = 0.0.0.0:9102" >> ${CONF}
+echo "listen = :::9102" >> ${CONF}
 echo "psk = ${PSK}" >> ${CONF}
-echo "obfs = ${OBFS}" >> ${CONF}
 
 run_bin
