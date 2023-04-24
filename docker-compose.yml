@@ -8,6 +8,7 @@ services:
       - snell
     environment:
       - PSK=password # Change here
+      - PORT=9102
 
   shadow-tls:
     image: ghcr.io/ihciah/shadow-tls:latest
@@ -20,8 +21,9 @@ services:
       - MODE=server
       - LISTEN=:::9443
       - SERVER=snell-server:9102
-      - TLS=cloud.tencent.com # Change here
+      - TLS=cloud.tencent.com:443 # Change here
       - PASSWORD=password # Change here
+      # - V3=true
 
 networks:
   snell:
