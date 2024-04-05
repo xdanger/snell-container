@@ -22,6 +22,11 @@ All available versions are listed in [tags](https://hub.docker.com/r/geekdada/sn
 docker run -e PSK=<your_psk_here> -p <your_host_port_here>:9102 --restart unless-stopped -d geekdada/snell-server:latest
 ```
 
+If you want to use surge ponte
+```
+docker run -e PSK=<your_psk_here> --name snell-v4 --restart unless-stopped --network host -d geekdada/snell-server:latest
+```
+
 ### Run with [shadow-tls](https://github.com/ihciah/shadow-tls)
 
 Use `docker-compose.yml` to run snell-server with shadow-tls. Please change the environment variables in `docker-compose.yml` to your own.
