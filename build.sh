@@ -14,5 +14,5 @@ docker buildx build \
   --platform linux/aarch64 \
   --build-arg VERSION=${VERSION} \
   --build-arg ARCH=arm64 \
-  --tag gchr.io/xdanger/snell-container:$VERSION \
+  --tag ghcr.io/xdanger/snell-container:$VERSION \
   .
