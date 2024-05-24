@@ -11,7 +11,8 @@ fi
 
 docker buildx build \
   --push \
-  --platform linux/amd64 \
+  --platform linux/aarch64 \
   --build-arg VERSION=${VERSION} \
-  --tag geekdada/snell-server:$VERSION \
+  --build-arg ARCH=arm64 \
+  --tag gchr.io/xdanger/snell-container:$VERSION \
   .

@@ -1,22 +1,27 @@
-FROM --platform=$BUILDPLATFORM tonistiigi/xx AS xx
+FROM alpine:latest
 
-FROM --platform=$BUILDPLATFORM frolvlad/alpine-glibc:latest AS build
+WORKDIR /usr/bin
 
-COPY --from=xx / /
+RUN apk --no-cache add ca-certificates wget && \
+    wget -q -O /etc/apk/keys/sgerrand.rsa.pub https://alpine-pkgs.sgerrand.com/sgerrand.rsa.pub && \
+    wget https://github.com/sgerrand/alpine-pkg-glibc/releases/download/2.35-r1/glibc-2.35-r1.apk && \
+    apk add glibc-2.35-r1.apk && \
+    rm -rf glibc-2.35-r1.apk
+
 COPY get_url.sh /get_url.sh
-ARG TARGETPLATFORM
+ARG ARCH
 ARG VERSION
 
-RUN xx-info env && wget -q -O "snell-server.zip" $(/get_url.sh ${VERSION} $(xx-info arch)) && \
+RUN wget -q -O "snell-server.zip" $(/get_url.sh ${VERSION} ${ARCH}) && \
     unzip snell-server.zip && rm snell-server.zip && \
-    xx-verify /snell-server
-
-FROM frolvlad/alpine-glibc:latest
+    apk del wget && \
+    rm -f /get_url.sh
 
 ENV TZ=UTC
+ENV PATH /usr/bin:$PATH
 
-COPY --from=build /snell-server /usr/bin/snell-server
 COPY start.sh /start.sh
 RUN apk add --update --no-cache libstdc++
 
 ENTRYPOINT /start.sh
+# ENTRYPOINT ["cat", "/arg3.txt"]
