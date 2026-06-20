@@ -1,6 +1,6 @@
 # Snell Server Standalone
 
-Docker image for [snell-server](https://manual.nssurge.com/others/snell.html)
+Docker image for [snell-server](https://kb.nssurge.com/surge-knowledge-base/release-notes/snell)
 
 [![Build and push image](https://github.com/krosdai/snell-server-container/actions/workflows/build-and-push.yml/badge.svg)](https://github.com/krosdai/snell-server-container/actions/workflows/build-and-push.yml)
 
