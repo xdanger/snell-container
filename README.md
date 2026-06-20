@@ -2,7 +2,7 @@
 
 Docker image for [snell-server](https://manual.nssurge.com/others/snell.html)
 
-[![Build and push image](https://github.com/daihaus/snell-server-container/actions/workflows/build-and-push.yml/badge.svg)](https://github.com/daihaus/snell-server-container/actions/workflows/build-and-push.yml)
+[![Build and push image](https://github.com/krosdai/snell-server-container/actions/workflows/build-and-push.yml/badge.svg)](https://github.com/krosdai/snell-server-container/actions/workflows/build-and-push.yml)
 
 Forked from [geekdada/snell-server-docker](https://github.com/geekdada/snell-server-docker).
 
@@ -21,17 +21,17 @@ All available versions are listed in the GitHub Container Registry package tags.
 `PORT` is optional and defaults to `9102`. Configure `PSK` and `PORT` with either command arguments or environment variables. The examples publish the port on both `/tcp` and `/udp` because Snell v5's QUIC Proxy mode needs UDP; for a v4/TCP-only client you can drop the `/udp` mapping.
 
 ```bash
-docker run -d --rm -p 7000:7000/tcp -p 7000:7000/udp ghcr.io/daihaus/snell-server-container:5.0.1 --psk <your_psk_here> --port 7000
+docker run -d --rm -p 7000:7000/tcp -p 7000:7000/udp ghcr.io/krosdai/snell-server-container:5.0.1 --psk <your_psk_here> --port 7000
 ```
 
 ```bash
-docker run -d --rm -e PSK=<your_psk_here> -e PORT=7000 -p 7000:7000/tcp -p 7000:7000/udp ghcr.io/daihaus/snell-server-container:5.0.1
+docker run -d --rm -e PSK=<your_psk_here> -e PORT=7000 -p 7000:7000/tcp -p 7000:7000/udp ghcr.io/krosdai/snell-server-container:5.0.1
 ```
 
 If you want to use the service as a Surge Ponte relay server, exposing all ports is recommended:
 
 ```bash
-docker run -d --rm -e PSK=<your_psk_here> --name snell --network host ghcr.io/daihaus/snell-server-container:5.0.1
+docker run -d --rm -e PSK=<your_psk_here> --name snell --network host ghcr.io/krosdai/snell-server-container:5.0.1
 ```
 
 ### Build

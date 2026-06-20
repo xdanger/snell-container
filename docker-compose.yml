@@ -2,7 +2,7 @@ version: '2.4'
 
 services:
   snell-server:
-    image: ghcr.io/daihaus/snell-server-container:5
+    image: ghcr.io/krosdai/snell-server-container:5
     restart: unless-stopped
     networks:
       - snell

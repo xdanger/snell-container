@@ -5,7 +5,7 @@ set -euo pipefail
 VERSION=${1:-}
 CHANNEL=${2:-stable}
 PLATFORM=${PLATFORM:-linux/amd64,linux/arm64}
-IMAGE_NAME=${IMAGE_NAME:-ghcr.io/daihaus/snell-server-container}
+IMAGE_NAME=${IMAGE_NAME:-ghcr.io/krosdai/snell-server-container}
 
 RED='\033[0;31m'
 GREEN='\033[0;32m'
@@ -33,7 +33,7 @@ show_usage() {
   echo "  CHANNEL  optional release channel: stable or beta; default: stable"
   echo ""
   echo "Environment overrides:"
-  echo "  IMAGE_NAME  default: ghcr.io/daihaus/snell-server-container"
+  echo "  IMAGE_NAME  default: ghcr.io/krosdai/snell-server-container"
   echo "  PLATFORM    default: linux/amd64,linux/arm64"
   echo ""
   echo "Examples:"
